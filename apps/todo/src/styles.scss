@@ -1,0 +1,29 @@
+@import '~@angular/material/theming';
+@import 'app/components/component-themes.scss';
+
+@include mat-core();
+
+$todo-primary: mat-palette($mat-indigo);
+$todo-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$todo-warn: mat-palette($mat-red);
+$todo-theme: mat-light-theme($todo-primary, $todo-accent, $todo-warn);
+
+// [TODO] - only add themes for the components that are being used
+@include angular-material-theme($todo-theme);
+
+@include todo-theme($todo-theme);
+
+html {
+  background-color: map-get(map-get($todo-theme, 'background'), 'background');
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

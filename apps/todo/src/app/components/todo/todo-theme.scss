@@ -1,0 +1,7 @@
+@import '~@angular/material/theming';
+
+@mixin todo-theme($theme) {
+  .todo-list-item__text--done {
+    color: map-get(map-get($theme, 'foreground'), 'disabled');
+  }
+}

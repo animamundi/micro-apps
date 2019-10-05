@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-title>
+    Add a new todo
+  </mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="todoFormGroup" (ngSubmit)="onAddTodo()">
+      <mat-form-field>
+        <input
+          placeholder="What do you need to do?"
+          formControlName="title"
+          matInput
+        />
+
+        <mat-error *ngIf="todoFormGroup.get('title')?.hasError('required')">
+          You can't add an empty todo, silly!
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      type="submit"
+      (click)="onAddTodo()"
+      mat-raised-button
+      color="primary"
+      [disabled]="todoFormGroup.invalid"
+    >
+      ADD
+    </button>
+  </mat-card-actions>
+</mat-card>

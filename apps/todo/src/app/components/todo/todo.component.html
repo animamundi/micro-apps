@@ -1,0 +1,16 @@
+<mat-list-item>
+  <div class="todo-list-item">
+    <mat-checkbox
+      class="todo-list-item__checkbox"
+      [formControl]="doneFormControl"
+    >
+      <span [class.todo-list-item__text--done]="todo?.done">{{
+        todo?.title
+      }}</span>
+    </mat-checkbox>
+
+    <button mat-icon-button color="warn" (click)="onDeleteClicked()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</mat-list-item>

@@ -1,5 +1,5 @@
 {
-  "npmScope": "micro-apps",
+  "npmScope": "nmg",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -7,5 +7,18 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "todo-e2e": {
+      "tags": []
+    },
+    "todo": {
+      "tags": []
+    },
+    "utils": {
+      "tags": []
+    },
+    "ui-utils": {
+      "tags": []
+    }
+  }
 }

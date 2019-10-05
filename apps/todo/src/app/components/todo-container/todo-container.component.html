@@ -1,0 +1,5 @@
+<nmg-todo
+  [todo]="todo$ | async"
+  (delete)="onDeleteTodo($event)"
+  (doneChange)="onTodoDoneChanged($event)"
+></nmg-todo>

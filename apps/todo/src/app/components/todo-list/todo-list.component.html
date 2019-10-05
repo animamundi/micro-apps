@@ -1,0 +1,12 @@
+<mat-card *ngIf="todos?.length > 0">
+  <mat-card-content>
+    <mat-list>
+      <ng-container
+        *ngFor="let todo of todos; trackBy: trackByTodoId; last as isLast"
+      >
+        <nmg-todo-container [id]="todo.id"></nmg-todo-container>
+        <mat-divider *ngIf="!isLast"></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
