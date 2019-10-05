@@ -8,10 +8,7 @@
     "nx.json": "*"
   },
   "projects": {
-    "todo-e2e": {
-      "tags": []
-    },
-    "todo": {
+    "dodo": {
       "tags": []
     },
     "utils": {

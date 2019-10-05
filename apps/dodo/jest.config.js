@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'todo',
+  name: 'dodo',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/todo',
+  coverageDirectory: '../../coverage/apps/dodo',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js',
