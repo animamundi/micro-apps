@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MatCardModule,
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
+  MatDialogModule,
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -14,7 +14,7 @@ import { TodoFormComponent } from './todo-form.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatCardModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,

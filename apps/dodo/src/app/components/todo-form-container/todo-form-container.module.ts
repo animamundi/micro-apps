@@ -8,5 +8,6 @@ import { TodoFormContainerComponent } from './todo-form-container.component';
   imports: [CommonModule, TodoFormModule],
   declarations: [TodoFormContainerComponent],
   exports: [TodoFormContainerComponent],
+  entryComponents: [TodoFormContainerComponent],
 })
 export class TodoFormContainerModule {}

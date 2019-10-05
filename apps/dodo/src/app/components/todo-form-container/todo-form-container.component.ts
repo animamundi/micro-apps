@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { AppState, todoFormAddTodo } from '../../store';
 import { MinimalTodo } from '../../models';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'nmg-todo-form-container',
@@ -10,9 +11,13 @@ import { MinimalTodo } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoFormContainerComponent {
-  constructor(private readonly store: Store<AppState>) {}
+  constructor(
+    private readonly store: Store<AppState>,
+    private readonly dialogRef: MatDialogRef<TodoFormContainerComponent>,
+  ) {}
 
   public onAddToDo(todo: MinimalTodo): void {
     this.store.dispatch(todoFormAddTodo(todo));
+    this.dialogRef.close();
   }
 }

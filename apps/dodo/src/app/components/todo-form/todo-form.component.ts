@@ -26,8 +26,5 @@ export class TodoFormComponent {
     }
 
     this.addTodo.emit(this.todoFormGroup.value);
-    this.todoFormGroup.reset({
-      title: '',
-    });
   }
 }
