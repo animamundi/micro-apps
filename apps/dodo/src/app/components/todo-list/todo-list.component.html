@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
-    <mat-tab-group dynamicHeight="true">
+    <mat-tab-group dynamicHeight="true" mat-stretch-tabs>
       <mat-tab label="All">
         <ng-container
           *ngTemplateOutlet="todoListTemplate; context: { todos: todos }"
@@ -32,7 +32,7 @@
 </mat-card>
 
 <ng-template #todoListTemplate let-todos="todos">
-  <mat-list *ngIf="todos?.length > 0">
+  <mat-list *ngIf="todos?.length > 0; else noContentTemplate">
     <ng-container
       *ngFor="let todo of todos; trackBy: trackByTodoId; last as isLast"
     >
@@ -40,4 +40,14 @@
       <mat-divider *ngIf="!isLast"></mat-divider>
     </ng-container>
   </mat-list>
+
+  <ng-template #noContentTemplate>
+    <div class="no-todos">
+      <h2 class="mat-title">No todos</h2>
+
+      <p class="body-1">
+        All your todos have become extinct!
+      </p>
+    </div>
+  </ng-template>
 </ng-template>
