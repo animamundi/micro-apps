@@ -1,5 +1,6 @@
 export * from './add-todo';
 export * from './add-todo-container';
+export * from './header';
 export * from './todo';
 export * from './todo-container';
 export * from './todo-form';
