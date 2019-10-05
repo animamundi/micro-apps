@@ -14,7 +14,6 @@ import { appReducer } from './store';
         strictStateImmutability: true,
       },
     }),
-    // EffectsModule.forRoot([AppEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
 })

@@ -3,15 +3,13 @@
 
 @include mat-core();
 
-$todo-primary: mat-palette($mat-indigo);
-$todo-accent: mat-palette($mat-pink, A200, A100, A400);
-
+$todo-primary: mat-palette($mat-teal);
+$todo-accent: mat-palette($mat-grey);
 $todo-warn: mat-palette($mat-red);
 $todo-theme: mat-light-theme($todo-primary, $todo-accent, $todo-warn);
 
 // [TODO] - only add themes for the components that are being used
 @include angular-material-theme($todo-theme);
-
 @include todo-theme($todo-theme);
 
 html {
