@@ -16,6 +16,8 @@ import { MinimalTodo } from '../../models';
 export class TodoFormComponent {
   @Output() public addTodo = new EventEmitter<MinimalTodo>();
 
+  @Output() public cancel = new EventEmitter<void>();
+
   public todoFormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
   });
@@ -26,5 +28,9 @@ export class TodoFormComponent {
     }
 
     this.addTodo.emit(this.todoFormGroup.value);
+  }
+
+  public onCancel(): void {
+    this.cancel.emit();
   }
 }

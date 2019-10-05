@@ -20,4 +20,8 @@ export class TodoFormContainerComponent {
     this.store.dispatch(todoFormAddTodo(todo));
     this.dialogRef.close();
   }
+
+  public onCancel(): void {
+    this.dialogRef.close();
+  }
 }

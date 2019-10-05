@@ -6,11 +6,16 @@ export const getTodosState = createFeatureSelector<AppState, TodosState>(
   TODOS_STATE,
 );
 
-const { selectEntities } = todosAdapter.getSelectors();
+const { selectEntities, selectIds } = todosAdapter.getSelectors();
 
 export const getTodos = createSelector(
   getTodosState,
   selectEntities,
+);
+
+export const getTodoIds = createSelector(
+  getTodosState,
+  selectIds,
 );
 
 export const getTodoById = (id: Todo['id']) =>
@@ -19,7 +24,18 @@ export const getTodoById = (id: Todo['id']) =>
     todos => todos[id],
   );
 
-export const getTodosList = createSelector(
+export const getTodoList = createSelector(
   getTodos,
-  todos => Object.keys(todos).map(id => todos[id] as Todo),
+  getTodoIds,
+  (todos, todoIds) => (todoIds as string[]).map(id => todos[id] as Todo),
+);
+
+export const getCompleteTodoList = createSelector(
+  getTodoList,
+  todos => todos.filter(({ done }) => done),
+);
+
+export const getIncompleteTodoList = createSelector(
+  getTodoList,
+  todos => todos.filter(({ done }) => !done),
 );

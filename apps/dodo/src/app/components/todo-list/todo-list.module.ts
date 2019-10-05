@@ -4,10 +4,11 @@ import {
   MatCardModule,
   MatListModule,
   MatDividerModule,
+  MatTabsModule,
 } from '@angular/material';
 
-import { TodoListComponent } from './todo-list.component';
 import { TodoContainerModule } from '../todo-container';
+import { TodoListComponent } from './todo-list.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { TodoContainerModule } from '../todo-container';
     MatCardModule,
     MatListModule,
     MatDividerModule,
+    MatTabsModule,
     TodoContainerModule,
   ],
   declarations: [TodoListComponent],

@@ -2,7 +2,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { AppState, getTodosList } from '../../store';
+import {
+  AppState,
+  getTodoList,
+  getCompleteTodoList,
+  getIncompleteTodoList,
+} from '../../store';
 import { Todo } from '../../models';
 
 @Component({
@@ -12,10 +17,14 @@ import { Todo } from '../../models';
 })
 export class TodoListContainerComponent implements OnInit {
   public todos$?: Observable<Todo[]>;
+  public completeTodos$?: Observable<Todo[]>;
+  public incompleteTodos$?: Observable<Todo[]>;
 
   constructor(private readonly store: Store<AppState>) {}
 
   public ngOnInit(): void {
-    this.todos$ = this.store.select(getTodosList);
+    this.todos$ = this.store.select(getTodoList);
+    this.completeTodos$ = this.store.select(getCompleteTodoList);
+    this.incompleteTodos$ = this.store.select(getIncompleteTodoList);
   }
 }
