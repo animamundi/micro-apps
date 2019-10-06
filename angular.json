@@ -21,7 +21,11 @@
             "polyfills": "apps/dodo/src/polyfills.ts",
             "tsConfig": "apps/dodo/tsconfig.app.json",
             "aot": false,
-            "assets": ["apps/dodo/src/favicon.ico", "apps/dodo/src/assets"],
+            "assets": [
+              "apps/dodo/src/favicon.ico",
+              "apps/dodo/src/assets",
+              "apps/dodo/src/manifest.webmanifest"
+            ],
             "styles": ["apps/dodo/src/styles.scss"],
             "scripts": []
           },
@@ -53,7 +57,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/dodo/ngsw-config.json"
             }
           }
         },
@@ -91,37 +97,6 @@
             "tsConfig": "apps/dodo/tsconfig.spec.json",
             "setupFile": "apps/dodo/src/test-setup.ts"
           }
-        }
-      }
-    },
-    "utils": {
-      "projectType": "library",
-      "root": "libs/utils",
-      "sourceRoot": "libs/utils/src",
-      "prefix": "nmg",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/utils/tsconfig.lib.json",
-              "libs/utils/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/utils/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/utils/jest.config.js",
-            "tsConfig": "libs/utils/tsconfig.spec.json",
-            "setupFile": "libs/utils/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
         }
       }
     },
