@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import { AppState, signInFormSignInWithGoogle } from '../../../store';
 
 @Component({
   selector: 'nmg-auth-layout',
@@ -10,16 +10,9 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthLayoutComponent {
-  constructor(
-    private readonly angularFireAuth: AngularFireAuth,
-    private readonly router: Router,
-  ) {}
+  constructor(private readonly store: Store<AppState>) {}
 
   public loginWithGoogle(): void {
-    this.angularFireAuth.auth
-      .signInWithPopup(new auth.GoogleAuthProvider())
-      .then(() => {
-        this.router.navigateByUrl('/');
-      });
+    this.store.dispatch(signInFormSignInWithGoogle());
   }
 }

@@ -14,7 +14,7 @@
     <ng-container *ngIf="user$ | async as user; else signInElement">
       <span>{{ user.displayName }}</span>
 
-      <button type="button" mat-button (click)="onLogout()">Logout</button>
+      <button type="button" mat-button (click)="onSignOut()">Sign out</button>
     </ng-container>
 
     <ng-template #signInElement>
