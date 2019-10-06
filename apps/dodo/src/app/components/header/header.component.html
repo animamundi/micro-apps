@@ -1,26 +1,18 @@
 <header>
   <mat-toolbar color="primary" class="mat-elevation-z4">
-    <a mat-button routerLink="/">
-      <img
-        src="../../../assets/dodo-light.svg"
-        alt="Dodo Logo"
-        class="header__brand-logo"
-      />
-      <span class="mat-title">Dodo</span>
-    </a>
+    <img
+      src="../../../assets/dodo-light.svg"
+      alt="Dodo Logo"
+      class="header__brand-logo"
+    />
+    <span>Dodo</span>
 
     <div class="header__spacer"></div>
 
-    <ng-container *ngIf="user$ | async as user; else signInElement">
+    <ng-container *ngIf="user$ | async as user">
       <span>{{ user.displayName }}</span>
 
       <button type="button" mat-button (click)="onSignOut()">Sign out</button>
     </ng-container>
-
-    <ng-template #signInElement>
-      <a mat-button routerLink="/auth">
-        Sign in
-      </a>
-    </ng-template>
   </mat-toolbar>
 </header>

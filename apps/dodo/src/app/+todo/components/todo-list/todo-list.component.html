@@ -9,26 +9,26 @@
       </mat-tab>
 
       <mat-tab
-        label="Complete"
-        [disabled]="!completeTodos || !completeTodos.length"
-      >
-        <ng-container
-          *ngTemplateOutlet="
-            todoListTemplate;
-            context: { todos: completeTodos }
-          "
-        >
-        </ng-container>
-      </mat-tab>
-
-      <mat-tab
-        label="Incomplete"
+        label="Todo"
         [disabled]="!incompleteTodos || !incompleteTodos.length"
       >
         <ng-container
           *ngTemplateOutlet="
             todoListTemplate;
             context: { todos: incompleteTodos }
+          "
+        >
+        </ng-container>
+      </mat-tab>
+
+      <mat-tab
+        label="Done"
+        [disabled]="!completeTodos || !completeTodos.length"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            todoListTemplate;
+            context: { todos: completeTodos }
           "
         >
         </ng-container>
