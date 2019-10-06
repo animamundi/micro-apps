@@ -7,3 +7,4 @@ export * from './todo-form';
 export * from './todo-form-container';
 export * from './todo-list';
 export * from './todo-list-container';
+export * from './update-available';

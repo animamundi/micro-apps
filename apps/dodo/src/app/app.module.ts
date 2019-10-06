@@ -3,27 +3,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
 import { AppStoreModule } from './app-store.module';
+import { AppComponent } from './app.component';
 import {
   TodoListContainerModule,
   AddTodoContainerModule,
   HeaderModule,
+  UpdateAvailableModule,
 } from './components';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
     AppStoreModule,
     HeaderModule,
     TodoListContainerModule,
     AddTodoContainerModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-    }),
+    UpdateAvailableModule,
   ],
   bootstrap: [AppComponent],
 })
