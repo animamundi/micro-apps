@@ -8,7 +8,10 @@
         </ng-container>
       </mat-tab>
 
-      <mat-tab label="Complete">
+      <mat-tab
+        label="Complete"
+        [disabled]="!completeTodos || !completeTodos.length"
+      >
         <ng-container
           *ngTemplateOutlet="
             todoListTemplate;
@@ -18,7 +21,10 @@
         </ng-container>
       </mat-tab>
 
-      <mat-tab label="Incomplete">
+      <mat-tab
+        label="Incomplete"
+        [disabled]="!incompleteTodos || !incompleteTodos.length"
+      >
         <ng-container
           *ngTemplateOutlet="
             todoListTemplate;
@@ -43,9 +49,15 @@
 
   <ng-template #noContentTemplate>
     <div class="no-todos">
-      <h2 class="mat-title">No todos</h2>
+      <h2 class="mat-headline">No todos!!!</h2>
 
-      <p class="body-1">
+      <img
+        src="../../../assets/dodo.svg"
+        alt="Dodo Logo"
+        class="no-todos__img"
+      />
+
+      <p class="mat-subheading-2">
         All your todos have become extinct!
       </p>
     </div>
