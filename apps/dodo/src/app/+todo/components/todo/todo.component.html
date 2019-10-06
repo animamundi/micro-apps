@@ -3,6 +3,7 @@
     <mat-checkbox
       class="todo-list-item__checkbox"
       [formControl]="doneFormControl"
+      (change)="onCheckboxChange()"
     >
       <span [class.todo-list-item__text--done]="todo?.done">{{
         todo?.title

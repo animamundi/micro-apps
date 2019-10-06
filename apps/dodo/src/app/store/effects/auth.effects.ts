@@ -15,18 +15,20 @@ import { AuthService } from '../../services';
 @Injectable()
 export class AuthEffects {
   public getAuthUser$ = createEffect(() =>
-    this.auth.user$.pipe(map(user => firebaseGetAuthUserSuccess({ user }))),
+    this.authService.user$.pipe(
+      map(user => firebaseGetAuthUserSuccess({ user })),
+    ),
   );
 
   public signIn$ = createEffect(() =>
     this.actions$.pipe(
       ofType(signInFormSignInWithGoogle),
-      switchMap(() => this.auth.signInWithGoogle()),
+      switchMap(() => this.authService.signInWithGoogle()),
       map(firebaseSignInWithGoogleSuccess),
     ),
   );
 
-  public directToHomePage$ = createEffect(
+  public redirectToTodosPage$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(firebaseSignInWithGoogleSuccess),
@@ -40,14 +42,25 @@ export class AuthEffects {
   public signOut$ = createEffect(() =>
     this.actions$.pipe(
       ofType(headerSignOut),
-      switchMap(() => this.auth.signOut()),
-      map(firebaseSignOutSuccess),
+      switchMap(() => this.authService.signOut()),
+      map(() => firebaseSignOutSuccess()),
     ),
+  );
+
+  public redirectToAuthPage$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(firebaseSignOutSuccess),
+        tap(() => {
+          this.routerService.navigateByUrl('/auth');
+        }),
+      ),
+    { dispatch: false },
   );
 
   constructor(
     private readonly actions$: Actions,
-    private readonly auth: AuthService,
+    private readonly authService: AuthService,
     private readonly routerService: Router,
   ) {}
 }

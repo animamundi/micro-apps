@@ -17,7 +17,7 @@ export class TodoFormContainerComponent {
   ) {}
 
   public onAddToDo(todo: MinimalTodo): void {
-    this.store.dispatch(todoFormAddTodo(todo));
+    this.store.dispatch(todoFormAddTodo({ todo }));
     this.dialogRef.close();
   }
 

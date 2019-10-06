@@ -10,3 +10,8 @@ export const getAuthUser = createSelector(
   getAuthState,
   ({ user }) => user,
 );
+
+export const getAuthUid = createSelector(
+  getAuthUser,
+  user => (user && user.uid) || null,
+);

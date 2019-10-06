@@ -6,12 +6,9 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  OnInit,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { distinctUntilChanged } from 'rxjs/operators';
 
-import { BaseComponent } from '@nmg/ui/utils';
 import { Todo } from '../../../models';
 
 @Component({
@@ -20,7 +17,7 @@ import { Todo } from '../../../models';
   styleUrls: ['./todo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoComponent extends BaseComponent implements OnInit, OnChanges {
+export class TodoComponent implements OnChanges {
   @Input() public readonly todo?: Todo;
 
   @Output() public readonly delete = new EventEmitter<Todo>();
@@ -28,14 +25,6 @@ export class TodoComponent extends BaseComponent implements OnInit, OnChanges {
   @Output() public readonly doneChange = new EventEmitter<Todo>();
 
   public doneFormControl = new FormControl(false);
-
-  public ngOnInit(): void {
-    this.safeSubscribe(this.doneFormControl.valueChanges)
-      .pipe(distinctUntilChanged())
-      .subscribe((done: boolean) => {
-        this.doneChange.emit(Object.assign({}, this.todo, { done }));
-      });
-  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.todo && this.todo) {
@@ -45,5 +34,14 @@ export class TodoComponent extends BaseComponent implements OnInit, OnChanges {
 
   public onDeleteClicked(): void {
     this.delete.emit(this.todo);
+  }
+
+  public onCheckboxChange() {
+    const todo = {
+      ...this.todo,
+      done: this.doneFormControl.value,
+    } as Todo;
+
+    this.doneChange.emit(todo);
   }
 }

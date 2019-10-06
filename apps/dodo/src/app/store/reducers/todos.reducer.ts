@@ -2,11 +2,7 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, Action, on } from '@ngrx/store';
 
 import { Todo } from '../../models';
-import {
-  todoFormAddTodo,
-  todoListDeleteTodo,
-  todoListTodoDoneChange,
-} from '../actions';
+import { firebaseGetTodosSuccess } from '../actions';
 
 export const TODOS_STATE = 'todos';
 
@@ -21,18 +17,9 @@ export const initialTodosState = todosAdapter.getInitialState();
 const reducer = createReducer(
   initialTodosState,
 
-  on(todoFormAddTodo, (state, { title }) =>
-    todosAdapter.addOne(
-      { title, done: false, id: `${state.ids.length + 1}` },
-      state,
-    ),
+  on(firebaseGetTodosSuccess, (state, { todos }) =>
+    todosAdapter.addAll(todos, state),
   ),
-
-  on(todoListTodoDoneChange, (state, todo) =>
-    todosAdapter.updateOne({ id: todo.id, changes: todo }, state),
-  ),
-
-  on(todoListDeleteTodo, (state, { id }) => todosAdapter.removeOne(id, state)),
 );
 
 export function todosReducer(

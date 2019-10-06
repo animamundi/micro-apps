@@ -25,10 +25,10 @@ export class TodoContainerComponent {
   constructor(private readonly store: Store<AppState>) {}
 
   public onTodoDoneChanged(todo: Todo): void {
-    this.store.dispatch(todoListTodoDoneChange(todo));
+    this.store.dispatch(todoListTodoDoneChange({ todo }));
   }
 
   public onDeleteTodo(todo: Todo): void {
-    this.store.dispatch(todoListDeleteTodo(todo));
+    this.store.dispatch(todoListDeleteTodo({ todo }));
   }
 }
