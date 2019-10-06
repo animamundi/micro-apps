@@ -10,6 +10,7 @@ import { AppStoreModule } from './app-store.module';
 import { AppComponent } from './app.component';
 import { HeaderModule, UpdateAvailableModule } from './components';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirePerformanceModule,
+    AngularFireAuthModule,
     AppStoreModule,
     AppRoutingModule,
     HeaderModule,

@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import { analytics } from 'firebase/app';
 import { Component, OnInit } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { MatDialog } from '@angular/material';
@@ -19,7 +19,7 @@ export class AppComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    firebase.analytics();
+    analytics();
 
     this.safeSubscribe(this.swUpdate.available).subscribe(() => {
       this.dialog.open(UpdateAvailableComponent);

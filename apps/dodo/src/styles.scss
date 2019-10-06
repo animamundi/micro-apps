@@ -4,7 +4,7 @@
 @include mat-core();
 
 $todo-primary: mat-palette($mat-teal);
-$todo-accent: mat-palette($mat-grey);
+$todo-accent: mat-palette($mat-amber, 'A400');
 $todo-warn: mat-palette($mat-red);
 $todo-theme: mat-light-theme($todo-primary, $todo-accent, $todo-warn);
 
