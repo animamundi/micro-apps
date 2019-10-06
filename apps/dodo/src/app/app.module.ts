@@ -26,7 +26,9 @@ import { AppRoutingModule } from './app-routing.module';
     AngularFirePerformanceModule,
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence({
+      synchronizeTabs: true,
+    }),
     AppStoreModule,
     AppRoutingModule,
     HeaderModule,
