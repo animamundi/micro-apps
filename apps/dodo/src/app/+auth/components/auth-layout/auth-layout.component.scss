@@ -15,14 +15,19 @@
   margin-bottom: 24px;
 }
 
-.auth__buttons {
+.auth__button-group {
   display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
-}
+  flex-direction: column;
+  align-items: center;
 
-.auth__button-logo {
-  height: 24px;
-  margin-right: 8px;
-  margin-left: -8px;
+  .auth__button {
+    min-width: 200px;
+    margin-bottom: 16px;
+
+    .auth__button-logo {
+      height: 24px;
+      margin-right: 8px;
+      margin-left: -8px;
+    }
+  }
 }

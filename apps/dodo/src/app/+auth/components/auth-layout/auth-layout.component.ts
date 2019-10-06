@@ -1,7 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { AppState, signInFormSignInWithGoogle } from '../../../store';
+import {
+  AppState,
+  signInFormSignInWithGoogle,
+  signInFormSignInAnonymously,
+} from '../../../store';
 
 @Component({
   selector: 'nmg-auth-layout',
@@ -12,7 +16,11 @@ import { AppState, signInFormSignInWithGoogle } from '../../../store';
 export class AuthLayoutComponent {
   constructor(private readonly store: Store<AppState>) {}
 
-  public loginWithGoogle(): void {
+  public signInWithGoogle(): void {
     this.store.dispatch(signInFormSignInWithGoogle());
+  }
+
+  public signInAnonymously(): void {
+    this.store.dispatch(signInFormSignInAnonymously());
   }
 }

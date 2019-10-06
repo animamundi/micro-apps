@@ -4,19 +4,12 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { environment } from '../environments/environment';
-import {
-  appReducer,
-  storageMetaReducer,
-  AuthEffects,
-  TodoEffects,
-} from './store';
+import { appReducer, AuthEffects, TodoEffects } from './store';
 
 @NgModule({
   imports: [
     StoreModule.forRoot(appReducer, {
-      metaReducers: !environment.production
-        ? [storageMetaReducer]
-        : [storageMetaReducer],
+      metaReducers: !environment.production ? [] : [],
       runtimeChecks: {
         strictActionImmutability: true,
         strictStateImmutability: true,

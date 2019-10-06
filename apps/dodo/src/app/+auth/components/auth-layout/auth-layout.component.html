@@ -7,14 +7,26 @@
     </mat-card-title>
 
     <mat-card-actions>
-      <div class="auth__buttons">
-        <button mat-raised-button (click)="loginWithGoogle()">
+      <div class="auth__button-group">
+        <button
+          mat-raised-button
+          (click)="signInWithGoogle()"
+          class="auth__button"
+        >
           <img
             src="../../../../assets/google.svg"
             alt="Google Logo"
             class="auth__button-logo"
           />
           Sign in with Google
+        </button>
+
+        <button
+          mat-raised-button
+          class="auth__button"
+          (click)="signInAnonymously()"
+        >
+          Sign in anonymously
         </button>
       </div>
     </mat-card-actions>

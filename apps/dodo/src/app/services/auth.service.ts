@@ -39,6 +39,10 @@ export class AuthService {
     return this.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
+  public signInAnonymously() {
+    return this.getAuth().signInAnonymously();
+  }
+
   private signInWithPopup(
     provider: auth.AuthProvider,
   ): Promise<auth.UserCredential> {

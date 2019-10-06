@@ -9,6 +9,8 @@ import {
   firebaseSignOutSuccess,
   signInFormSignInWithGoogle,
   firebaseSignInWithGoogleSuccess,
+  signInFormSignInAnonymously,
+  firebaseSignInAnonymouslySuccess,
 } from '../actions';
 import { AuthService } from '../../services';
 
@@ -20,7 +22,7 @@ export class AuthEffects {
     ),
   );
 
-  public signIn$ = createEffect(() =>
+  public signInWithGoogle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(signInFormSignInWithGoogle),
       switchMap(() => this.authService.signInWithGoogle()),
@@ -28,10 +30,21 @@ export class AuthEffects {
     ),
   );
 
+  public signInAnonymously$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(signInFormSignInAnonymously),
+      switchMap(() => this.authService.signInAnonymously()),
+      map(firebaseSignInAnonymouslySuccess),
+    ),
+  );
+
   public redirectToTodosPage$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(firebaseSignInWithGoogleSuccess),
+        ofType(
+          firebaseSignInWithGoogleSuccess,
+          firebaseSignInAnonymouslySuccess,
+        ),
         tap(() => {
           this.routerService.navigateByUrl('/');
         }),
