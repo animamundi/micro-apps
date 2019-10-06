@@ -7,8 +7,8 @@ import {
   getTodoList,
   getCompleteTodoList,
   getIncompleteTodoList,
-} from '../../store';
-import { Todo } from '../../models';
+} from '../../../store';
+import { Todo } from '../../../models';
 
 @Component({
   selector: 'nmg-todo-list-container',

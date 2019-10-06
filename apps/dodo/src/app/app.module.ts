@@ -2,16 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirePerformanceModule } from '@angular/fire/performance';
 
 import { environment } from '../environments/environment';
 import { AppStoreModule } from './app-store.module';
 import { AppComponent } from './app.component';
-import {
-  TodoListContainerModule,
-  AddTodoContainerModule,
-  HeaderModule,
-  UpdateAvailableModule,
-} from './components';
+import { HeaderModule, UpdateAvailableModule } from './components';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,10 +19,11 @@ import {
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirePerformanceModule,
     AppStoreModule,
+    AppRoutingModule,
     HeaderModule,
-    TodoListContainerModule,
-    AddTodoContainerModule,
     UpdateAvailableModule,
   ],
   bootstrap: [AppComponent],

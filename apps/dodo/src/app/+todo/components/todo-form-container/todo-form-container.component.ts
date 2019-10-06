@@ -1,9 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
-
-import { AppState, todoFormAddTodo } from '../../store';
-import { MinimalTodo } from '../../models';
 import { MatDialogRef } from '@angular/material';
+
+import { AppState, todoFormAddTodo } from '../../../store';
+import { MinimalTodo } from '../../../models';
 
 @Component({
   selector: 'nmg-todo-form-container',

@@ -1,3 +1,4 @@
+import * as firebase from 'firebase/app';
 import { Component, OnInit } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { MatDialog } from '@angular/material';
@@ -8,7 +9,6 @@ import { UpdateAvailableComponent } from './components';
 @Component({
   selector: 'nmg-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent extends BaseComponent implements OnInit {
   constructor(
@@ -19,6 +19,8 @@ export class AppComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    firebase.analytics();
+
     this.safeSubscribe(this.swUpdate.available).subscribe(() => {
       this.dialog.open(UpdateAvailableComponent);
     });

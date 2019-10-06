@@ -7,8 +7,8 @@ import {
   getTodoById,
   todoListTodoDoneChange,
   todoListDeleteTodo,
-} from '../../store';
-import { Todo } from '../../models';
+} from '../../../store';
+import { Todo } from '../../../models';
 
 @Component({
   selector: 'nmg-todo-container',

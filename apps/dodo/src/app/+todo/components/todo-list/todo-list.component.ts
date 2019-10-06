@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Todo } from '../../models';
+import { Todo } from '../../../models';
 
 @Component({
   selector: 'nmg-todo-list',

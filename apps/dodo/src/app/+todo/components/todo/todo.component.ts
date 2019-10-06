@@ -12,7 +12,7 @@ import { FormControl } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 
 import { BaseComponent } from '@nmg/ui/utils';
-import { Todo } from '../../models';
+import { Todo } from '../../../models';
 
 @Component({
   selector: 'nmg-todo',

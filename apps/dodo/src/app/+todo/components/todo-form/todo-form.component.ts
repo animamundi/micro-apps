@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { MinimalTodo } from '../../models';
+import { MinimalTodo } from '../../../models';
 
 @Component({
   selector: 'nmg-todo-form',

@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import 'app/components/component-themes.scss';
+@import 'app/+todo/components/component-themes.scss';
 
 @include mat-core();
 
@@ -24,4 +24,21 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 16px;
+
+  @media (min-width: 600px) {
+    padding: 24px;
+    max-width: 600px;
+  }
+
+  @media (min-width: 960px) {
+    padding: 32px;
+  }
 }
