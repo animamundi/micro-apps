@@ -1,65 +1,30 @@
 <mat-card>
   <mat-card-content>
-    <mat-tab-group dynamicHeight="true" mat-stretch-tabs>
-      <mat-tab label="All">
-        <ng-container
-          *ngTemplateOutlet="todoListTemplate; context: { todos: todos }"
-        >
-        </ng-container>
-      </mat-tab>
+    <mat-list *ngIf="todos?.length > 0; else noContentTemplate">
+      <h2 class="mat-headline todos__title">Todos</h2>
 
-      <mat-tab
-        label="Todo"
-        [disabled]="!incompleteTodos || !incompleteTodos.length"
+      <ng-container
+        *ngFor="let todo of todos; trackBy: trackByTodoId; last as isLast"
       >
-        <ng-container
-          *ngTemplateOutlet="
-            todoListTemplate;
-            context: { todos: incompleteTodos }
-          "
-        >
-        </ng-container>
-      </mat-tab>
+        <nmg-todo-container [id]="todo.id"></nmg-todo-container>
+        <mat-divider *ngIf="!isLast"></mat-divider>
+      </ng-container>
+    </mat-list>
 
-      <mat-tab
-        label="Done"
-        [disabled]="!completeTodos || !completeTodos.length"
-      >
-        <ng-container
-          *ngTemplateOutlet="
-            todoListTemplate;
-            context: { todos: completeTodos }
-          "
-        >
-        </ng-container>
-      </mat-tab>
-    </mat-tab-group>
+    <ng-template #noContentTemplate>
+      <div class="no-todos">
+        <h2 class="mat-headline">No todos!!!</h2>
+
+        <img
+          src="../../../assets/dodo.svg"
+          alt="Dodo Logo"
+          class="no-todos__img"
+        />
+
+        <p class="mat-subheading-2">
+          All your todos have become extinct!
+        </p>
+      </div>
+    </ng-template>
   </mat-card-content>
 </mat-card>
-
-<ng-template #todoListTemplate let-todos="todos">
-  <mat-list *ngIf="todos?.length > 0; else noContentTemplate">
-    <ng-container
-      *ngFor="let todo of todos; trackBy: trackByTodoId; last as isLast"
-    >
-      <nmg-todo-container [id]="todo.id"></nmg-todo-container>
-      <mat-divider *ngIf="!isLast"></mat-divider>
-    </ng-container>
-  </mat-list>
-
-  <ng-template #noContentTemplate>
-    <div class="no-todos">
-      <h2 class="mat-headline">No todos!!!</h2>
-
-      <img
-        src="../../../assets/dodo.svg"
-        alt="Dodo Logo"
-        class="no-todos__img"
-      />
-
-      <p class="mat-subheading-2">
-        All your todos have become extinct!
-      </p>
-    </div>
-  </ng-template>
-</ng-template>

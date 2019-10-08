@@ -10,8 +10,6 @@ import { Todo } from '../../../models';
 })
 export class TodoListComponent {
   @Input() public readonly todos?: Todo[];
-  @Input() public readonly completeTodos?: Todo[];
-  @Input() public readonly incompleteTodos?: Todo[];
 
   public trackByTodoId({ id }: Todo): string {
     return id;

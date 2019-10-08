@@ -1,0 +1,16 @@
+<mat-expansion-panel class="done-todos" [disabled]="!todos || !todos.length">
+  <mat-expansion-panel-header>
+    <mat-panel-title> Done ({{ todos?.length }}) </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="done-todos__list">
+    <mat-list>
+      <ng-container
+        *ngFor="let todo of todos; trackBy: trackByTodoId; last as isLast"
+      >
+        <nmg-todo-container [id]="todo.id"></nmg-todo-container>
+        <mat-divider *ngIf="!isLast"></mat-divider>
+      </ng-container>
+    </mat-list>
+  </div>
+</mat-expansion-panel>

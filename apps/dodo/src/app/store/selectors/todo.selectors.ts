@@ -30,12 +30,12 @@ export const getTodoList = createSelector(
   (todos, todoIds) => (todoIds as string[]).map(id => todos[id] as Todo),
 );
 
-export const getCompleteTodoList = createSelector(
+export const getDoneTodoList = createSelector(
   getTodoList,
   todos => todos.filter(({ done }) => done),
 );
 
-export const getIncompleteTodoList = createSelector(
+export const getNotDoneTodoList = createSelector(
   getTodoList,
   todos => todos.filter(({ done }) => !done),
 );
