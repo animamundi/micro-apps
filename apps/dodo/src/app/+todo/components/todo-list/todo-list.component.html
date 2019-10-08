@@ -1,6 +1,9 @@
 <mat-card>
   <mat-card-content>
-    <mat-list *ngIf="todos?.length > 0; else noContentTemplate">
+    <mat-list
+      class="todo-list"
+      *ngIf="todos?.length > 0; else noContentTemplate"
+    >
       <h2 class="mat-headline todos__title">Todos</h2>
 
       <ng-container

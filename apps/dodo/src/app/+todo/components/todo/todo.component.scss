@@ -9,6 +9,10 @@
   flex: 1 1 auto;
 }
 
+.todo-list-item__delete {
+  align-self: flex-start;
+}
+
 .todo-list-item__text--done {
   text-decoration: line-through;
 }

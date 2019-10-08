@@ -1,6 +1,40 @@
 @import '~@angular/material/theming';
 @import 'app/+todo/components/component-themes.scss';
 
+// wrap label
+.mat-checkbox-layout {
+  white-space: normal !important;
+  align-items: initial !important;
+}
+
+// keep checkbox on first line
+.mat-checkbox-inner-container {
+  margin-top: 4px !important;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  // wrap label ie
+  .mat-checkbox-layout {
+    display: block !important;
+  }
+
+  .mat-checkbox-inner-container {
+    margin-top: 0 !important;
+  }
+}
+
+// Display list items which wrap text onto multiple lines properly
+.todo-list.mat-list .mat-list-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: initial;
+}
+
+.todo-list-item__delete.mat-icon-button {
+  height: initial;
+  line-height: initial;
+}
+
 @include mat-core();
 
 $todo-primary: mat-palette($mat-teal);
