@@ -6,8 +6,14 @@ import { TodoLayoutComponent } from './components';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: TodoLayoutComponent,
+    children: [
+      {
+        path: 'add',
+        loadChildren: () =>
+          import('../+add-todo/add-todo.module').then(m => m.AddTodoModule),
+      },
+    ],
   },
 ];
 
