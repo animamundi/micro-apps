@@ -8,3 +8,4 @@ export * from './is-string';
 export * from './is-symbol';
 export * from './map-prop';
 export * from './record-to-array';
+export * from './no-error-state-matcher.class';

@@ -1,12 +1,13 @@
 <mat-card>
   <mat-card-content>
-    <h2 class="mat-headline todos__title">Todos</h2>
+    <ng-container *ngIf="todos?.length > 0; else noContentTemplate">
+      <h2 class="mat-headline todos__title">Todos</h2>
 
-    <nmg-todo-drag-list
-      *ngIf="todos?.length > 0; else noContentTemplate"
-      [todos]="todos"
-      (todoPrioritySet)="onTodoPrioritySet($event)"
-    ></nmg-todo-drag-list>
+      <nmg-todo-drag-list
+        [todos]="todos"
+        (todoPrioritySet)="onTodoPrioritySet($event)"
+      ></nmg-todo-drag-list>
+    </ng-container>
 
     <ng-template #noContentTemplate>
       <div class="no-todos">

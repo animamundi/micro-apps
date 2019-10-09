@@ -6,18 +6,16 @@
       <input
         placeholder="What do you need to do?"
         formControlName="title"
+        #titleInput
         matInput
+        [errorStateMatcher]="errorStateMatcher"
       />
-
-      <mat-error *ngIf="todoFormGroup.get('title')?.hasError('required')">
-        You can't add an empty todo, silly!
-      </mat-error>
     </mat-form-field>
   </form>
 </div>
 
 <div mat-dialog-actions>
-  <button type="button" (click)="onCancel()" mat-raised-button color="warn">
+  <button type="button" mat-raised-button color="warn" mat-dialog-close>
     CANCEL
   </button>
 

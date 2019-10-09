@@ -3,10 +3,13 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
+  ViewChild,
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MinimalTodo } from '../../../models';
+import { NoErrorStateMatcher } from '../../../utils';
+import { MatInput } from '@angular/material';
 
 @Component({
   selector: 'nmg-todo-form',
@@ -16,11 +19,14 @@ import { MinimalTodo } from '../../../models';
 export class TodoFormComponent {
   @Output() public addTodo = new EventEmitter<MinimalTodo>();
 
-  @Output() public cancel = new EventEmitter<void>();
+  @ViewChild('titleInput', { static: true, read: MatInput })
+  public titleInput?: MatInput;
 
   public todoFormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
   });
+
+  public errorStateMatcher = new NoErrorStateMatcher();
 
   public onAddTodo(): void {
     if (this.todoFormGroup.invalid) {
@@ -28,9 +34,10 @@ export class TodoFormComponent {
     }
 
     this.addTodo.emit(this.todoFormGroup.value);
-  }
+    this.todoFormGroup.reset();
 
-  public onCancel(): void {
-    this.cancel.emit();
+    if (this.titleInput) {
+      this.titleInput.focus();
+    }
   }
 }
