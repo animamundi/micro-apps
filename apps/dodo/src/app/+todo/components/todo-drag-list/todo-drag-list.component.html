@@ -1,12 +1,8 @@
-<div class="todo-drag-list" cdkDropList>
+<div class="todo-drag-list" cdkDropList (cdkDropListDropped)="drop($event)">
   <ng-container
     *ngFor="let todo of todos; trackBy: trackByTodoId; last as isLast"
   >
-    <div
-      class="todo-drag mat-body"
-      [class.todo-drag--border]
-      cdkDrag
-    >
+    <div class="todo-drag mat-body" [class.todo-drag--border] cdkDrag>
       <div cdkDragHandle class="todo-drag__handle">
         <mat-icon>drag_indicator</mat-icon>
       </div>

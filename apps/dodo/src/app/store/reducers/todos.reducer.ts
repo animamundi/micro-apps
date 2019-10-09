@@ -1,25 +1,26 @@
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, Action, on } from '@ngrx/store';
 
-import { Todo } from '../../models';
+import { TodoDictionary } from '../../models';
 import { firebaseGetTodosSuccess } from '../actions';
+import { arrayToRecord } from '../../utils';
 
 export const TODOS_STATE = 'todos';
 
-export type TodoEntity = Todo;
+export interface TodosState {
+  todos: TodoDictionary;
+}
 
-export type TodosState = EntityState<TodoEntity>;
-
-export const todosAdapter = createEntityAdapter<TodoEntity>();
-
-export const initialTodosState = todosAdapter.getInitialState();
+export const initialTodosState: TodosState = {
+  todos: {},
+};
 
 const reducer = createReducer(
   initialTodosState,
 
-  on(firebaseGetTodosSuccess, (state, { todos }) =>
-    todosAdapter.addAll(todos, state),
-  ),
+  on(firebaseGetTodosSuccess, (state, { todos }) => ({
+    ...state,
+    todos: arrayToRecord('id', todos),
+  })),
 );
 
 export function todosReducer(

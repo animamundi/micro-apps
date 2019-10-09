@@ -1,4 +1,11 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Todo } from '../../../models';
 
@@ -11,7 +18,23 @@ import { Todo } from '../../../models';
 export class TodoDragListComponent {
   @Input() public todos?: Todo[];
 
+  @Output() public todoPrioritySet = new EventEmitter<Todo[]>();
+
   public trackByTodoId({ id }: Todo): string {
     return id;
+  }
+
+  public drop(event: CdkDragDrop<string[]>): void {
+    if (!this.todos) {
+      return;
+    }
+
+    moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
+
+    const updatedTodos = this.todos.map((todo, index) => ({
+      ...todo,
+      priority: index,
+    }));
+    this.todoPrioritySet.emit(updatedTodos);
   }
 }

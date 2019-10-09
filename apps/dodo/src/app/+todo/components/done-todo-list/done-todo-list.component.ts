@@ -5,10 +5,12 @@ import {
   ViewChild,
   OnChanges,
   SimpleChanges,
+  EventEmitter,
+  Output,
 } from '@angular/core';
+import { MatExpansionPanel } from '@angular/material';
 
 import { Todo } from '../../../models';
-import { MatExpansionPanel } from '@angular/material';
 
 @Component({
   selector: 'nmg-done-todo-list',
@@ -18,6 +20,8 @@ import { MatExpansionPanel } from '@angular/material';
 })
 export class DoneTodoListComponent implements OnChanges {
   @Input() public todos?: Todo[];
+
+  @Output() public readonly todoPrioritySet = new EventEmitter<Todo[]>();
 
   @ViewChild(MatExpansionPanel, { static: true })
   public expansionPanel?: MatExpansionPanel;
@@ -32,5 +36,9 @@ export class DoneTodoListComponent implements OnChanges {
         this.expansionPanel.close();
       }
     }
+  }
+
+  public onTodoPrioritySet(todos: Todo[]): void {
+    this.todoPrioritySet.emit(todos);
   }
 }

@@ -32,6 +32,18 @@ export class TodoService {
       .update(todo);
   }
 
+  public updateManyTodos(userId: string, todos: Todo[]): Promise<void> {
+    const collection = this.getTodoCollection(userId);
+    const batch = this.angularFirestore.firestore.batch();
+
+    todos.forEach(todo => {
+      const docRef = collection.doc(todo.id).ref;
+      batch.update(docRef, todo);
+    });
+
+    return batch.commit();
+  }
+
   public deleteTodo(userId: string, todo: Todo): Promise<void> {
     return this.getTodoCollection(userId)
       .doc<Todo>(todo.id)

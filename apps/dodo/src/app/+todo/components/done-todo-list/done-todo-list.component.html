@@ -4,6 +4,9 @@
   </mat-expansion-panel-header>
 
   <div class="done-todos__list">
-    <nmg-todo-drag-list [todos]="todos"></nmg-todo-drag-list>
+    <nmg-todo-drag-list
+      [todos]="todos"
+      (todoPrioritySet)="onTodoPrioritySet($event)"
+    ></nmg-todo-drag-list>
   </div>
 </mat-expansion-panel>

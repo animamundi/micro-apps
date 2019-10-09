@@ -5,6 +5,7 @@
     <nmg-todo-drag-list
       *ngIf="todos?.length > 0; else noContentTemplate"
       [todos]="todos"
+      (todoPrioritySet)="onTodoPrioritySet($event)"
     ></nmg-todo-drag-list>
 
     <ng-template #noContentTemplate>

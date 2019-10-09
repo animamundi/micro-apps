@@ -1,8 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Todo } from '../../../models';
 import { Store } from '@ngrx/store';
-import { AppState, getDoneTodoList } from '../../../store';
+import { Observable } from 'rxjs';
+
+import { Todo } from '../../../models';
+import {
+  AppState,
+  getDoneTodoList,
+  doneTodoListUpdateTodoPriority,
+} from '../../../store';
 
 @Component({
   selector: 'nmg-done-todo-list-container',
@@ -16,5 +21,9 @@ export class DoneTodoListContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.todos$ = this.store.select(getDoneTodoList);
+  }
+
+  public onTodoPrioritySet(todos: Todo[]): void {
+    this.store.dispatch(doneTodoListUpdateTodoPriority({ todos }));
   }
 }

@@ -1,1 +1,4 @@
-<nmg-todo-list [todos]="todos$ | async"></nmg-todo-list>
+<nmg-todo-list
+  [todos]="todos$ | async"
+  (todoPrioritySet)="onTodoPrioritySet($event)"
+></nmg-todo-list>

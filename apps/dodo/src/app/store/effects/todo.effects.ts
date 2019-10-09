@@ -15,6 +15,9 @@ import {
   todoListDeleteTodo,
   firebaseUpdateTodoSuccess,
   firebaseDeleteTodoSuccess,
+  todoListUpdateTodoPriority,
+  firebaseUpdateManyTodosSuccess,
+  doneTodoListUpdateTodoPriority,
 } from '../actions';
 import { AppState } from '../reducers';
 import { getAuthUid } from '../selectors';
@@ -62,6 +65,19 @@ export class TodoEffects {
         this.todoService.updateTodo(uid as string, todo),
       ),
       map(firebaseUpdateTodoSuccess),
+    ),
+  );
+
+  public updateManyTodos$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(todoListUpdateTodoPriority, doneTodoListUpdateTodoPriority),
+      mapProp('todos'),
+      withLatestFrom(this.store.select(getAuthUid)),
+      filter(([_todos, uid]) => isNotNil(uid)),
+      switchMap(([todos, uid]) =>
+        this.todoService.updateManyTodos(uid as string, todos),
+      ),
+      map(firebaseUpdateManyTodosSuccess),
     ),
   );
 

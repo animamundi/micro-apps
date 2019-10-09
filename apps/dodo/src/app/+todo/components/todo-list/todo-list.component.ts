@@ -1,4 +1,10 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 import { Todo } from '../../../models';
 
@@ -10,4 +16,10 @@ import { Todo } from '../../../models';
 })
 export class TodoListComponent {
   @Input() public readonly todos?: Todo[];
+
+  @Output() public readonly todoPrioritySet = new EventEmitter<Todo[]>();
+
+  public onTodoPrioritySet(todos: Todo[]): void {
+    this.todoPrioritySet.emit(todos);
+  }
 }

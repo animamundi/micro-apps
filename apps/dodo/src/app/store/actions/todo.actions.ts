@@ -29,6 +29,20 @@ export const todoListDeleteTodo = createAction(
   props<DeleteTodoPayload>(),
 );
 
+export interface UpdateTodoPriorityPayload {
+  todos: Todo[];
+}
+
+export const todoListUpdateTodoPriority = createAction(
+  '[Todo List] Update Todo Priority',
+  props<UpdateTodoPriorityPayload>(),
+);
+
+export const doneTodoListUpdateTodoPriority = createAction(
+  '[Done Todo List] Update Todo Priority',
+  props<UpdateTodoPriorityPayload>(),
+);
+
 export const firebaseAddTodoSuccess = createAction(
   '[Firebase] Add Todo Success',
 );
@@ -44,6 +58,10 @@ export const firebaseGetTodosSuccess = createAction(
 
 export const firebaseUpdateTodoSuccess = createAction(
   '[Firebase] Update Todo Success',
+);
+
+export const firebaseUpdateManyTodosSuccess = createAction(
+  '[Firebase] Update Many Todos Success',
 );
 
 export const firebaseDeleteTodoSuccess = createAction(

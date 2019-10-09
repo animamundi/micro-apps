@@ -1,21 +1,15 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { TODOS_STATE, AppState, TodosState, todosAdapter } from '../reducers';
+import { TODOS_STATE, AppState, TodosState } from '../reducers';
 import { Todo } from '../../models';
+import { recordToArray } from '../../utils';
 
 export const getTodosState = createFeatureSelector<AppState, TodosState>(
   TODOS_STATE,
 );
 
-const { selectEntities, selectIds } = todosAdapter.getSelectors();
-
 export const getTodos = createSelector(
   getTodosState,
-  selectEntities,
-);
-
-export const getTodoIds = createSelector(
-  getTodosState,
-  selectIds,
+  ({ todos }) => todos,
 );
 
 export const getTodoById = (id: Todo['id']) =>
@@ -26,8 +20,8 @@ export const getTodoById = (id: Todo['id']) =>
 
 export const getTodoList = createSelector(
   getTodos,
-  getTodoIds,
-  (todos, todoIds) => (todoIds as string[]).map(id => todos[id] as Todo),
+  todos =>
+    recordToArray(todos).sort((a, b) => (a.priority || 0) - (b.priority || 0)),
 );
 
 export const getDoneTodoList = createSelector(
