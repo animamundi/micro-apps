@@ -17,6 +17,8 @@ import { Todo } from '../../../models';
 export class TodoListComponent {
   @Input() public readonly todos?: Todo[];
 
+  @Input() public readonly isLoading?: boolean;
+
   @Output() public readonly todoPrioritySet = new EventEmitter<Todo[]>();
 
   public onTodoPrioritySet(todos: Todo[]): void {

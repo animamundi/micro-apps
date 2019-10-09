@@ -12,6 +12,11 @@ export const getTodos = createSelector(
   ({ todos }) => todos,
 );
 
+export const getTodosIsLoading = createSelector(
+  getTodosState,
+  ({ isLoading }) => isLoading,
+);
+
 export const getTodoById = (id: Todo['id']) =>
   createSelector(
     getTodos,

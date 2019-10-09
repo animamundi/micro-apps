@@ -67,3 +67,9 @@ export const firebaseUpdateManyTodosSuccess = createAction(
 export const firebaseDeleteTodoSuccess = createAction(
   '[Firebase] Delete Todo Success',
 );
+
+export const setTodosIsLoading = createAction('[Todos] Set Todos Is Loading');
+
+export const unsetTodosIsLoading = createAction(
+  '[Todos] Unset Todos Is Loading',
+);

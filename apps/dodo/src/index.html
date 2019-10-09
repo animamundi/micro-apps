@@ -22,9 +22,55 @@
       name="description"
       content="Dodo is a simple, yet powerful method for preventing todo extinction."
     />
+
+    <style>
+      .spinner-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #009688;
+
+        border-radius: 100%;
+        animation: sk-scaleout 1s infinite ease-in-out;
+      }
+
+      @-webkit-keyframes sk-scaleout {
+        0% {
+          -webkit-transform: scale(0);
+        }
+        100% {
+          -webkit-transform: scale(1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes sk-scaleout {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        100% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
   <body>
-    <nmg-root></nmg-root>
+    <nmg-root>
+      <div class="spinner-container spinner-container--forced-height">
+        <div class="spinner"></div>
+      </div>
+    </nmg-root>
     <noscript
       >Please enable JavaScript to continue using this application.</noscript
     >

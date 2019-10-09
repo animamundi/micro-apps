@@ -1,28 +1,34 @@
 <mat-card>
   <mat-card-content>
-    <ng-container *ngIf="todos?.length > 0; else noContentTemplate">
-      <h2 class="mat-headline todos__title">Todos</h2>
-
-      <nmg-todo-drag-list
-        [todos]="todos"
-        (todoPrioritySet)="onTodoPrioritySet($event)"
-      ></nmg-todo-drag-list>
+    <ng-container *ngIf="isLoading; else loadedTemplate">
+      <h2 class="mat-body todos__title">Loading...</h2>
     </ng-container>
 
-    <ng-template #noContentTemplate>
-      <div class="no-todos">
-        <h2 class="mat-headline">No todos!!!</h2>
+    <ng-template #loadedTemplate>
+      <ng-container *ngIf="todos?.length > 0; else noContentTemplate">
+        <h2 class="mat-headline todos__title">Todos</h2>
 
-        <img
-          src="../../../assets/dodo.svg"
-          alt="Dodo Logo"
-          class="no-todos__img"
-        />
+        <nmg-todo-drag-list
+          [todos]="todos"
+          (todoPrioritySet)="onTodoPrioritySet($event)"
+        ></nmg-todo-drag-list>
+      </ng-container>
 
-        <p class="mat-subheading-2">
-          All your todos have become extinct!
-        </p>
-      </div>
+      <ng-template #noContentTemplate>
+        <div class="no-todos">
+          <h2 class="mat-headline">No todos!!!</h2>
+
+          <img
+            src="../../../assets/dodo.svg"
+            alt="Dodo Logo"
+            class="no-todos__img"
+          />
+
+          <p class="mat-subheading-2">
+            All your todos have become extinct!
+          </p>
+        </div>
+      </ng-template>
     </ng-template>
   </mat-card-content>
 </mat-card>

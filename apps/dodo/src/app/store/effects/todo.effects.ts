@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { switchMap, map, filter, withLatestFrom } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 import { TodoService } from '../../services';
-import { mapProp, isNotNil } from '../../utils';
+import { mapProp, isNotNil, isString } from '../../utils';
 import {
   firebaseGetAuthUserSuccess,
   firebaseGetTodosSuccess,
@@ -18,9 +18,11 @@ import {
   todoListUpdateTodoPriority,
   firebaseUpdateManyTodosSuccess,
   doneTodoListUpdateTodoPriority,
+  setTodosIsLoading,
+  unsetTodosIsLoading,
 } from '../actions';
 import { AppState } from '../reducers';
-import { getAuthUid } from '../selectors';
+import { getAuthUid, getTodosIsLoading } from '../selectors';
 
 @Injectable()
 export class TodoEffects {
@@ -39,14 +41,31 @@ export class TodoEffects {
     ),
   );
 
+  public setTodosIsLoading$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(firebaseGetAuthUserSuccess),
+      withLatestFrom(this.store.select(getTodosIsLoading)),
+      filter(([user, isLoading]) => user && !isLoading),
+      map(setTodosIsLoading),
+    ),
+  );
+
+  public unsetTodosIsLoading$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(firebaseGetTodosSuccess),
+      withLatestFrom(this.store.select(getTodosIsLoading)),
+      filter(([_, isLoading]) => isLoading),
+      map(unsetTodosIsLoading),
+    ),
+  );
+
   public addTodo$ = createEffect(() =>
     this.actions$.pipe(
       ofType(todoFormAddTodo),
       mapProp('todo'),
-      withLatestFrom(this.store.select(getAuthUid)),
-      filter(([_todo, uid]) => isNotNil(uid)),
+      this.withUid(),
       switchMap(([todo, uid]) =>
-        this.todoService.addTodo(uid as string, {
+        this.todoService.addTodo(uid, {
           ...todo,
           done: false,
         }),
@@ -59,11 +78,8 @@ export class TodoEffects {
     this.actions$.pipe(
       ofType(todoListTodoDoneChange),
       mapProp('todo'),
-      withLatestFrom(this.store.select(getAuthUid)),
-      filter(([_todo, uid]) => isNotNil(uid)),
-      switchMap(([todo, uid]) =>
-        this.todoService.updateTodo(uid as string, todo),
-      ),
+      this.withUid(),
+      switchMap(([todo, uid]) => this.todoService.updateTodo(uid, todo)),
       map(firebaseUpdateTodoSuccess),
     ),
   );
@@ -72,11 +88,8 @@ export class TodoEffects {
     this.actions$.pipe(
       ofType(todoListUpdateTodoPriority, doneTodoListUpdateTodoPriority),
       mapProp('todos'),
-      withLatestFrom(this.store.select(getAuthUid)),
-      filter(([_todos, uid]) => isNotNil(uid)),
-      switchMap(([todos, uid]) =>
-        this.todoService.updateManyTodos(uid as string, todos),
-      ),
+      this.withUid(),
+      switchMap(([todos, uid]) => this.todoService.updateManyTodos(uid, todos)),
       map(firebaseUpdateManyTodosSuccess),
     ),
   );
@@ -85,11 +98,8 @@ export class TodoEffects {
     this.actions$.pipe(
       ofType(todoListDeleteTodo),
       mapProp('todo'),
-      withLatestFrom(this.store.select(getAuthUid)),
-      filter(([_todo, uid]) => isNotNil(uid)),
-      switchMap(([todo, uid]) =>
-        this.todoService.deleteTodo(uid as string, todo),
-      ),
+      this.withUid(),
+      switchMap(([todo, uid]) => this.todoService.deleteTodo(uid, todo)),
       map(firebaseDeleteTodoSuccess),
     ),
   );
@@ -99,4 +109,12 @@ export class TodoEffects {
     private readonly todoService: TodoService,
     private readonly store: Store<AppState>,
   ) {}
+
+  private withUid<T>() {
+    return (source: Observable<T>) =>
+      source.pipe(
+        withLatestFrom(this.store.select(getAuthUid)),
+        filter((data): data is [T, string] => isString(data[1])),
+      );
+  }
 }

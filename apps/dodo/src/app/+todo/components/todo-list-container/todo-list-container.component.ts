@@ -6,6 +6,7 @@ import {
   AppState,
   getNotDoneTodoList,
   todoListUpdateTodoPriority,
+  getTodosIsLoading,
 } from '../../../store';
 import { Todo } from '../../../models';
 
@@ -16,11 +17,13 @@ import { Todo } from '../../../models';
 })
 export class TodoListContainerComponent implements OnInit {
   public todos$?: Observable<Todo[]>;
+  public isLoading$?: Observable<boolean>;
 
   constructor(private readonly store: Store<AppState>) {}
 
   public ngOnInit(): void {
     this.todos$ = this.store.select(getNotDoneTodoList);
+    this.isLoading$ = this.store.select(getTodosIsLoading);
   }
 
   public onTodoPrioritySet(todos: Todo[]): void {

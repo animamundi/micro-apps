@@ -1,4 +1,5 @@
 <nmg-todo-list
   [todos]="todos$ | async"
+  [isLoading]="isLoading$ | async"
   (todoPrioritySet)="onTodoPrioritySet($event)"
 ></nmg-todo-list>
