@@ -4,13 +4,6 @@
   </mat-expansion-panel-header>
 
   <div class="done-todos__list">
-    <mat-list class="todo-list">
-      <ng-container
-        *ngFor="let todo of todos; trackBy: trackByTodoId; last as isLast"
-      >
-        <nmg-todo-container [id]="todo.id"></nmg-todo-container>
-        <mat-divider *ngIf="!isLast"></mat-divider>
-      </ng-container>
-    </mat-list>
+    <nmg-todo-drag-list [todos]="todos"></nmg-todo-drag-list>
   </div>
 </mat-expansion-panel>

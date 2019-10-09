@@ -5,6 +5,7 @@
 .mat-checkbox-layout {
   white-space: normal !important;
   align-items: initial !important;
+  word-break: break-word !important;
 }
 
 // keep checkbox on first line
@@ -45,6 +46,7 @@ $todo-theme: mat-light-theme($todo-primary, $todo-accent, $todo-warn);
 // [TODO] - only add themes for the components that are being used
 @include angular-material-theme($todo-theme);
 @include todo-theme($todo-theme);
+@include todo-drag-list-theme($todo-theme);
 
 html {
   background-color: map-get(map-get($todo-theme, 'background'), 'background');

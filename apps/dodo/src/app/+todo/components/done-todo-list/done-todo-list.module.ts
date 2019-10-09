@@ -1,22 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatExpansionModule,
-  MatListModule,
-  MatDividerModule,
-} from '@angular/material';
+import { MatExpansionModule } from '@angular/material';
 
-import { TodoContainerModule } from '../todo-container';
+import { TodoDragListModule } from '../todo-drag-list';
 import { DoneTodoListComponent } from './done-todo-list.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatExpansionModule,
-    MatListModule,
-    MatDividerModule,
-    TodoContainerModule,
-  ],
+  imports: [CommonModule, MatExpansionModule, TodoDragListModule],
   declarations: [DoneTodoListComponent],
   exports: [DoneTodoListComponent],
 })

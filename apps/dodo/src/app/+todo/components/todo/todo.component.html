@@ -1,17 +1,20 @@
-<mat-list-item>
-  <div class="todo-list-item">
-    <mat-checkbox
-      class="todo-list-item__checkbox"
-      [formControl]="doneFormControl"
-      (change)="onCheckboxChange()"
-    >
-      <span [class.todo-list-item__text--done]="todo?.done">{{
-        todo?.title
-      }}</span>
-    </mat-checkbox>
+<div class="todo-list-item">
+  <mat-checkbox
+    class="todo-list-item__checkbox"
+    [formControl]="doneFormControl"
+    (change)="onCheckboxChange()"
+  >
+    <span [class.todo-list-item__text--done]="todo?.done">{{
+      todo?.title
+    }}</span>
+  </mat-checkbox>
 
-    <button class="todo-list-item__delete" mat-icon-button color="warn" (click)="onDeleteClicked()">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </div>
-</mat-list-item>
+  <button
+    class="todo-list-item__delete"
+    mat-icon-button
+    color="warn"
+    (click)="onDeleteClicked()"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

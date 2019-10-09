@@ -1,0 +1,12 @@
+.todo-drag {
+  display: flex;
+  padding: 8px;
+}
+
+.todo-drag__handle {
+  margin-right: 4px;
+}
+
+.todo-drag__content {
+  flex: 1 1 auto;
+}

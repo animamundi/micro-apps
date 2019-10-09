@@ -4,6 +4,7 @@ export * from './done-todo-list';
 export * from './done-todo-list-container';
 export * from './todo';
 export * from './todo-container';
+export * from './todo-drag-list';
 export * from './todo-form';
 export * from './todo-form-container';
 export * from './todo-layout';

@@ -33,8 +33,4 @@ export class DoneTodoListComponent implements OnChanges {
       }
     }
   }
-
-  public trackByTodoId({ id }: Todo): string {
-    return id;
-  }
 }
