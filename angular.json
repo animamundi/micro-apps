@@ -24,7 +24,8 @@
             "assets": [
               "apps/dodo/src/favicon.ico",
               "apps/dodo/src/assets",
-              "apps/dodo/src/manifest.webmanifest"
+              "apps/dodo/src/manifest.webmanifest",
+              "apps/dodo/src/_redirects"
             ],
             "styles": ["apps/dodo/src/styles.scss"],
             "scripts": []
