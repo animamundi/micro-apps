@@ -10,9 +10,15 @@
     <div class="header__spacer"></div>
 
     <ng-container *ngIf="user$ | async as user">
-      <span>{{ user.displayName }}</span>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onSignOut()">
+          Sign out
+        </button>
+      </mat-menu>
 
-      <button type="button" mat-button (click)="onSignOut()">Sign out</button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
     </ng-container>
   </mat-toolbar>
 </header>
