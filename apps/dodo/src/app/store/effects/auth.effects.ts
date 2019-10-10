@@ -12,7 +12,7 @@ import {
   signInFormSignInAnonymously,
   firebaseSignInAnonymouslySuccess,
 } from '../actions';
-import { AuthService } from '../../services';
+import { AuthService, UserService } from '../../services';
 
 @Injectable()
 export class AuthEffects {
@@ -20,6 +20,19 @@ export class AuthEffects {
     this.authService.user$.pipe(
       map(user => firebaseGetAuthUserSuccess({ user })),
     ),
+  );
+
+  public setUser$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(firebaseGetAuthUserSuccess),
+        tap(({ user }) => {
+          if (user) {
+            this.userService.setUser(user.uid, user);
+          }
+        }),
+      ),
+    { dispatch: false },
   );
 
   public signInWithGoogle$ = createEffect(() =>
@@ -75,5 +88,6 @@ export class AuthEffects {
     private readonly actions$: Actions,
     private readonly authService: AuthService,
     private readonly routerService: Router,
+    private readonly userService: UserService,
   ) {}
 }

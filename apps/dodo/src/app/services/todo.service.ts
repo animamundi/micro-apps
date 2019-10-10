@@ -23,7 +23,7 @@ export class TodoService {
     todo: CreateTodoPayload,
   ): Promise<DocumentReference> {
     const id = this.angularFirestore.createId();
-    return this.getTodoCollection(userId).add({ ...todo, id });
+    return this.getTodoCollection(userId).add({ ...todo, id, user: userId });
   }
 
   public updateTodo(userId: string, todo: Todo): Promise<void> {
@@ -51,6 +51,8 @@ export class TodoService {
   }
 
   private getTodoCollection(userId: string): AngularFirestoreCollection<Todo> {
-    return this.angularFirestore.collection<Todo>(`users/${userId}/todos`);
+    return this.angularFirestore.collection<Todo>(`todos`, ref =>
+      ref.where('user', '==', userId),
+    );
   }
 }
