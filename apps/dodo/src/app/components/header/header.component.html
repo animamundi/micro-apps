@@ -9,7 +9,7 @@
 
     <div class="header__spacer"></div>
 
-    <ng-container *ngIf="user$ | async as user">
+    <ng-container *ngIf="user">
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="onSignOut()">
           Sign out

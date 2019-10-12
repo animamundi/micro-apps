@@ -11,7 +11,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AppStoreModule } from './app-store.module';
 import { AppComponent } from './app.component';
-import { HeaderModule, UpdateAvailableModule } from './components';
+import { UpdateAvailableModule, HeaderContainerModule } from './components';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     }),
     AppStoreModule,
     AppRoutingModule,
-    HeaderModule,
+    HeaderContainerModule,
     UpdateAvailableModule,
   ],
   bootstrap: [AppComponent],

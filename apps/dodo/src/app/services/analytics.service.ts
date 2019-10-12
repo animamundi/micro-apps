@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { analytics } from 'firebase';
+import { analytics } from 'firebase/app';
 
 import { Dictionary, AnalyticsEvent } from '../models';
 

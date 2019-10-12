@@ -1,9 +1,12 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 
 import { User } from '../../models';
-import { AppState, getAuthUser, headerSignOut } from '../../store';
 
 @Component({
   selector: 'nmg-header',
@@ -11,16 +14,12 @@ import { AppState, getAuthUser, headerSignOut } from '../../store';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
-  public user$?: Observable<User | null>;
+export class HeaderComponent {
+  @Input() public user?: User;
 
-  constructor(private readonly store: Store<AppState>) {}
-
-  public ngOnInit(): void {
-    this.user$ = this.store.select(getAuthUser);
-  }
+  @Output() public signOut = new EventEmitter<void>();
 
   public onSignOut(): void {
-    this.store.dispatch(headerSignOut());
+    this.signOut.emit();
   }
 }
