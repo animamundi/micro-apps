@@ -8,20 +8,20 @@ import {
 } from '../actions';
 import { arrayToRecord } from '../../utils';
 
-export const TODOS_STATE = 'todos';
+export const TODO_STATE = 'todo';
 
-export interface TodosState {
+export interface TodoState {
   isLoading: boolean;
   todos: TodoDictionary;
 }
 
-export const initialTodosState: TodosState = {
+export const initialTodoState: TodoState = {
   isLoading: false,
   todos: {},
 };
 
 const reducer = createReducer(
-  initialTodosState,
+  initialTodoState,
 
   on(firebaseGetTodosSuccess, (state, { todos }) => ({
     ...state,
@@ -39,9 +39,9 @@ const reducer = createReducer(
   })),
 );
 
-export function todosReducer(
-  state: TodosState | undefined,
+export function todoReducer(
+  state: TodoState | undefined,
   action: Action,
-): TodosState {
+): TodoState {
   return reducer(state, action);
 }

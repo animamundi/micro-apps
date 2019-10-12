@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { of, Observable } from 'rxjs';
 
 import { TodoService } from '../../services';
-import { mapProp, isNotNil, isString } from '../../utils';
+import { mapProp, isString } from '../../utils';
 import {
   firebaseGetAuthUserSuccess,
   firebaseGetTodosSuccess,
@@ -64,12 +64,7 @@ export class TodoEffects {
       ofType(todoFormAddTodo),
       mapProp('todo'),
       this.withUid(),
-      switchMap(([todo, uid]) =>
-        this.todoService.addTodo(uid, {
-          ...todo,
-          done: false,
-        }),
-      ),
+      switchMap(([todo, uid]) => this.todoService.addTodo(uid, todo)),
       map(firebaseAddTodoSuccess),
     ),
   );

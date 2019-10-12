@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Todo } from '../../../models';
 import {
   AppState,
-  getDoneTodoList,
+  getDoneTodoArray,
   doneTodoListUpdateTodoPriority,
 } from '../../../store';
 
@@ -20,7 +20,7 @@ export class DoneTodoListContainerComponent implements OnInit {
   constructor(private readonly store: Store<AppState>) {}
 
   public ngOnInit(): void {
-    this.todos$ = this.store.select(getDoneTodoList);
+    this.todos$ = this.store.select(getDoneTodoArray);
   }
 
   public onTodoPrioritySet(todos: Todo[]): void {

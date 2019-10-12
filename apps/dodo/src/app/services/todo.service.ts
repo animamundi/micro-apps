@@ -6,7 +6,7 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-import { Todo, CreateTodoPayload } from '../models';
+import { Todo, MinimalTodo } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +20,15 @@ export class TodoService {
 
   public addTodo(
     userId: string,
-    todo: CreateTodoPayload,
+    todo: MinimalTodo,
   ): Promise<DocumentReference> {
     const id = this.angularFirestore.createId();
-    return this.getTodoCollection(userId).add({ ...todo, id, user: userId });
+    return this.getTodoCollection(userId).add({
+      ...todo,
+      id,
+      user: userId,
+      done: false,
+    });
   }
 
   public updateTodo(userId: string, todo: Todo): Promise<void> {

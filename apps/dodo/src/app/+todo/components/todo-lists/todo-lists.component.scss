@@ -1,0 +1,20 @@
+.todo-lists {
+  margin-top: 32px;
+}
+
+.todo-lists__header {
+  text-align: center;
+}
+
+.todo-lists__card-wrapper {
+  margin-top: 16px;
+}
+
+.todo-lists__card-content {
+  display: flex;
+  align-items: center;
+}
+
+.todo-lists__card-title {
+  flex: 1 1 auto;
+}

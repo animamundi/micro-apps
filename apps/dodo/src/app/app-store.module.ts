@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { environment } from '../environments/environment';
-import { appReducer, AuthEffects, TodoEffects } from './store';
+import { appReducer, AuthEffects, TodoListEffects, TodoEffects } from './store';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { appReducer, AuthEffects, TodoEffects } from './store';
         strictStateImmutability: true,
       },
     }),
-    EffectsModule.forRoot([AuthEffects, TodoEffects]),
+    EffectsModule.forRoot([AuthEffects, TodoListEffects, TodoEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
 })

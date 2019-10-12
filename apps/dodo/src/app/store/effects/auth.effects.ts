@@ -12,7 +12,7 @@ import {
   signInFormSignInAnonymously,
   firebaseSignInAnonymouslySuccess,
 } from '../actions';
-import { AuthService, UserService } from '../../services';
+import { AuthService, AnalyticsService, UserService } from '../../services';
 
 @Injectable()
 export class AuthEffects {
@@ -29,6 +29,19 @@ export class AuthEffects {
         tap(({ user }) => {
           if (user) {
             this.userService.setUser(user.uid, user);
+          }
+        }),
+      ),
+    { dispatch: false },
+  );
+
+  public setAnalyticsUser$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(firebaseGetAuthUserSuccess),
+        tap(({ user }) => {
+          if (user) {
+            this.analyticsService.setUserId(user.uid);
           }
         }),
       ),
@@ -88,6 +101,7 @@ export class AuthEffects {
     private readonly actions$: Actions,
     private readonly authService: AuthService,
     private readonly routerService: Router,
+    private readonly analyticsService: AnalyticsService,
     private readonly userService: UserService,
   ) {}
 }

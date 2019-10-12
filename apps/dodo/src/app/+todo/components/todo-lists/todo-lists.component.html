@@ -1,0 +1,23 @@
+<ng-container *ngIf="todoLists?.length">
+  <article class="todo-lists">
+    <header class="todo-lists__header">
+      <h2 class="mat-headline">Other Todo Lists</h2>
+    </header>
+
+    <ng-container *ngFor="let todoList of todoLists">
+      <section class="todo-lists__card-wrapper">
+        <mat-card>
+          <div class="todo-lists__card-content">
+            <div class="todo-lists__card-title">
+              {{ todoList.title }}
+            </div>
+
+            <button mat-raised-button color="primary">
+              VIEW
+            </button>
+          </div>
+        </mat-card>
+      </section>
+    </ng-container>
+  </article>
+</ng-container>

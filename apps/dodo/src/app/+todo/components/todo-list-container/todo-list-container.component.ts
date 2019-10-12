@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import {
   AppState,
-  getNotDoneTodoList,
+  getNotDoneTodoArray,
   todoListUpdateTodoPriority,
   getTodosIsLoading,
 } from '../../../store';
@@ -22,7 +22,7 @@ export class TodoListContainerComponent implements OnInit {
   constructor(private readonly store: Store<AppState>) {}
 
   public ngOnInit(): void {
-    this.todos$ = this.store.select(getNotDoneTodoList);
+    this.todos$ = this.store.select(getNotDoneTodoArray);
     this.isLoading$ = this.store.select(getTodosIsLoading);
   }
 
